@@ -58,6 +58,10 @@ int main() {
             if (station == choice) {
                 cursor.replace(0, 1, ">");
             }
+            
+            if (station == stations.size() - 1) {
+                printw("\n");
+            }
 
             printw(("\n" + cursor + stations[station].name).c_str());
         }
@@ -66,7 +70,7 @@ int main() {
 
         if (key == KEY_UP) choice--;
         if (key == KEY_DOWN) choice++;
-        
+
         if (choice < 0) choice = stations.size() - 1;
         if (choice >= (int)stations.size()) choice = 0;
 
