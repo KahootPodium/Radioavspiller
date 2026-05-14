@@ -1,5 +1,5 @@
 # Radioavspiller
-Dette er en enkel C++ radioavspiller som spiller NRK radio via ffplay
+Minimalistisk radioavspiller som lar deg lytte til en rekke ulike norske radiostasjoner
 
 ## Hvordan kjøre
 ```bash
@@ -7,7 +7,7 @@ g++ main.cpp -lncurses -o radio && ./radio
 ```
 
 ## Funksjoner
-- Spiller norske radiostasjoner online
+- Spiller ulike norske radiostasjoner
 - Enkel terminalbasert brukeropplevelse
 - Bruker C++ og systemkommandoer for avspilling
 
