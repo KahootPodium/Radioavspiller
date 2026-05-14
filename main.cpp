@@ -9,32 +9,31 @@ void playRadio(std::string url) {
 int main() {
     int choice = 0;
 
-    initscr();
-    keypad(stdscr, TRUE);
+    initscr(); // Tar kontroll over terminalen
+    keypad(stdscr, TRUE); // Aktiverer tastaturet
 
     while (true) {
         clear();
-
+        
         printw("=== Velg en radiostasjon === ");
 
         mvprintw(2, 0, choice == 0 ? "> NRK P1" : "  NRK P1");
         mvprintw(3, 0, choice == 1 ? "> NRK P2" : "  NRK P2");
         mvprintw(4, 0, choice == 2 ? "> NRK P3" : "  NRK P3");
+        mvprintw(5, 0, choice == 3 ? "> Quit"   : "  Quit");
 
-        refresh();
-
-        int key = getch();
+        int key = getch(); // Venter på input fra piltastene
 
         if (key == KEY_UP) choice--;
         if (key == KEY_DOWN) choice++;
 
-        if (choice < 0) choice = 0;
-        if (choice > 2) choice = 2;
+        if (choice < 0) choice = 3;
+        if (choice > 3) choice = 0;
 
-        if (key == 10) break;
+        if (key == 10) break; // Avslutter menyen når Enter trykkes
     }
 
-    endwin();
+    endwin(); // Går tilbake til vanlig terminal
 
     switch (choice) {
         case 0:
