@@ -15,3 +15,8 @@ g++ main.cpp -o radio
 ## Teknologi
 - C++
 - ffmpeg
+
+## Requirements
+```bash
+brew install ffmpeg ncurses
+```
