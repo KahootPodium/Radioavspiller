@@ -3,7 +3,7 @@ Dette er en enkel C++ radioavspiller som spiller NRK radio via ffplay
 
 ## Hvordan kjøre
 ```bash
-g++ main.cpp -o radio
+g++ main.cpp -lncurses -o radio && ./radio
 ./radio
 ```
 
