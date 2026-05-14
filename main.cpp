@@ -3,6 +3,11 @@
 #include <string>
 #include <vector>
 
+struct radioStation {
+    std::string name;
+    std::string url;
+};
+
 void playRadio(std::string url) {
     system(("ffplay -nodisp -hide_banner " + url).c_str());
 }
@@ -10,29 +15,32 @@ void playRadio(std::string url) {
 int main() {
     int choice = 0;
 
-    // Setter opp menyen
-    std::vector<std::string> stations = {
-        "NRK P1",
-        "NRK P2",
-        "NRK P3",
-        "NRK Super",
-        "NRK Klassisk",
-        "NRK Jazz",
-        "NRK Folkemusikk",
-        "NRK Sport",
-        "P4 Norge",
-        "P5 Hits",
-        "P6 Rock",
-        "P7 Klem",
-        "P8 Pop",
-        "P9 Retro",
-        "P10 Country",
-        "P11 Dance",
-        "P12 Hitmix",
-        "Radio Norge",
-        "Radio Rock",
-        "Radio Kiss",
-        "Quit"
+    // Setter opp menyvalgene
+    std::vector<radioStation> stations = {
+        {"NRK P1", "http://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h"},
+        {"NRK P2", "http://lyd.nrk.no/nrk_radio_p2_mp3_h"},
+        {"NRK P3", "http://lyd.nrk.no/nrk_radio_p3_mp3_h"},
+        {"NRK Super", "http://lyd.nrk.no/nrk_radio_super_mp3_h"},
+        {"NRK Klassisk", "http://lyd.nrk.no/nrk_radio_klassisk_mp3_h"},
+        {"NRK Jazz", "http://lyd.nrk.no/nrk_radio_jazz_mp3_h"},
+        {"NRK Folkemusikk", "http://lyd.nrk.no/nrk_radio_folkemusikk_mp3_h"},
+        {"NRK Sport", "http://lyd.nrk.no/nrk_radio_sport_mp3_h"},
+
+        {"P4 Norge", "https://p4.p4groupaudio.com/P04_MH"},
+        {"P5 Hits", "https://p4.p4groupaudio.com/P05_MH"},
+        {"P6 Rock", "https://p4.p4groupaudio.com/P06_MH"},
+        {"P7 Klem", "https://p4.p4groupaudio.com/P07_MH"},
+        {"P8 Pop", "https://p4.p4groupaudio.com/P08_MH"},
+        {"P9 Retro", "https://p4.p4groupaudio.com/P09_MH"},
+        {"P10 Country", "https://p4.p4groupaudio.com/P10_MH"},
+        {"P11 Dance", "https://p4.p4groupaudio.com/P11_MH"},
+        {"P12 Hitmix", "https://p4.p4groupaudio.com/P12_MH"},
+
+        {"Radio Norge", "https://live-bauerno.sharp-stream.com/radionorge_no_mp3"},
+        {"Radio Rock", "https://live-bauerno.sharp-stream.com/radiorock_no_mp3"},
+        {"Kiss", "https://live-bauerno.sharp-stream.com/kiss_no_mp3"},
+
+        {"Quit", ""}
     };
 
     initscr(); // Tar kontroll over terminalen
@@ -51,102 +59,25 @@ int main() {
                 cursor.replace(0, 1, ">");
             }
 
-            printw(("\n" + cursor + stations[station]).c_str());
+            printw(("\n" + cursor + stations[station].name).c_str());
         }
 
         int key = getch(); // Venter på input fra piltastene
 
         if (key == KEY_UP) choice--;
         if (key == KEY_DOWN) choice++;
-
-        if (choice < 0) choice = 20;
-        if (choice > 20) choice = 0;
+        
+        if (choice < 0) choice = stations.size() - 1;
+        if (choice >= (int)stations.size()) choice = 0;
 
         if (key == 10) break; // Avslutter menyen når enter trykkes
+        
     }
 
     endwin(); // Går tilbake til vanlig terminal
 
     // Spiller av valgt radiostasjon
-    switch (choice) {
-        case 0:
-            playRadio("http://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h");
-            break;
-
-        case 1:
-            playRadio("http://lyd.nrk.no/nrk_radio_p2_mp3_h");
-            break;
-
-        case 2:
-            playRadio("http://lyd.nrk.no/nrk_radio_p3_mp3_h");
-            break;
-        
-        case 3:
-            playRadio("http://lyd.nrk.no/nrk_radio_super_mp3_h");
-            break;
-
-        case 4:
-            playRadio("http://lyd.nrk.no/nrk_radio_klassisk_mp3_h");
-            break;
-        
-        case 5:
-            playRadio("http://lyd.nrk.no/nrk_radio_jazz_mp3_h");
-            break;
-
-        case 6:
-            playRadio("http://lyd.nrk.no/nrk_radio_folkemusikk_mp3_h");
-            break;
-
-        case 7:
-            playRadio("http://lyd.nrk.no/nrk_radio_sport_mp3_h");
-            break;
-
-        case 8:
-            playRadio("https://p4.p4groupaudio.com/P04_MH");
-            break;
-
-        case 9:
-            playRadio("https://p4.p4groupaudio.com/P05_MH");
-            break;
-
-        case 10:
-            playRadio("https://p4.p4groupaudio.com/P06_MH");
-            break;
-
-        case 11:
-            playRadio("https://p4.p4groupaudio.com/P07_MH");
-            break;
-
-        case 12:
-            playRadio("https://p4.p4groupaudio.com/P08_MH");
-            break;
-        
-        case 13:
-            playRadio("https://p4.p4groupaudio.com/P09_MH");
-            break;
-
-        case 14:
-            playRadio("https://p4.p4groupaudio.com/P10_MH");
-            break;
-
-        case 15:
-            playRadio("https://p4.p4groupaudio.com/P11_MH");
-            break;
-
-        case 16:
-            playRadio("https://p4.p4groupaudio.com/P12_MH");
-            break;
-
-        case 17:
-            playRadio("https://live-bauerno.sharp-stream.com/radionorge_no_mp3");
-            break;
-        
-        case 18:
-            playRadio("https://live-bauerno.sharp-stream.com/radiorock_no_mp3");
-            break;
-
-        case 19:
-            playRadio("https://live-bauerno.sharp-stream.com/kiss_no_mp3");
-            break;
+    if (!stations[choice].url.empty()) {
+        playRadio(stations[choice].url);
     }
 }
