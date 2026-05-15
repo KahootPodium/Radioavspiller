@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+// Lager en datatype som representerer en radiostasjon
 struct radioStation {
     std::string name;
     std::string url;
@@ -38,19 +39,22 @@ int main() {
 
         {"Radio Norge", "https://live-bauerno.sharp-stream.com/radionorge_no_mp3"},
         {"Radio Rock", "https://live-bauerno.sharp-stream.com/radiorock_no_mp3"},
-        {"Kiss", "https://live-bauerno.sharp-stream.com/kiss_no_mp3"},
+        {"Radio Kiss", "https://live-bauerno.sharp-stream.com/kiss_no_mp3"},
 
         {"Quit", ""}
     };
 
+    setlocale(LC_ALL, "C.UTF-8"); // Fikser tekstformateringen
+    
     initscr(); // Tar kontroll over terminalen
     keypad(stdscr, TRUE); // Aktiverer tastaturet
 
     while (true) {
         clear();
         
-        printw("=== Velg en radiostasjon ===");
-        printw("\n");
+        printw("╔════════════════════════════╗\n");
+        printw("║    Velg en radiostasjon    ║\n");
+        printw("╚════════════════════════════╝\n");
 
         for (int station = 0; station < stations.size(); station++) {
             std::string cursor = "  ";
@@ -59,11 +63,22 @@ int main() {
                 cursor.replace(0, 1, ">");
             }
             
-            if (station == stations.size() - 1) {
+            if (station == 8 || station == 17 || station == 20) {
                 printw("\n");
             }
 
-            printw(("\n" + cursor + stations[station].name).c_str());
+            printw("\n");
+            printw(cursor.c_str());
+
+            if (station == choice) {
+                attron(A_BOLD);
+            }
+
+            printw(stations[station].name.c_str());
+
+            if (station == choice) {
+                attroff(A_BOLD);
+            }
         }
 
         int key = getch(); // Venter på input fra piltastene
@@ -72,10 +87,9 @@ int main() {
         if (key == KEY_DOWN) choice++;
 
         if (choice < 0) choice = stations.size() - 1;
-        if (choice >= (int)stations.size()) choice = 0;
+        if (choice >= stations.size()) choice = 0;
 
         if (key == 10) break; // Avslutter menyen når enter trykkes
-        
     }
 
     endwin(); // Går tilbake til vanlig terminal
