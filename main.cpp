@@ -3,10 +3,21 @@
 #include <string>
 #include <vector>
 
+// Lager en datatype som representerer en region
+struct radioRegion {
+    std::string name;
+    std::string url;
+};
+
 // Lager en datatype som representerer en radiostasjon
 struct radioStation {
     std::string name;
     std::string url;
+    std::vector<radioRegion> regions;
+
+    // Tar imot både landsdekkende og regionale radiokanaler
+    radioStation(std::string name, std::string url) : name(name), url(url) {}
+    radioStation(std::string name, std::vector<radioRegion> regions) : name(name), regions(regions) {}
 };
 
 void playRadio(std::string url) {
@@ -16,9 +27,26 @@ void playRadio(std::string url) {
 int main() {
     int choice = 0;
 
-    // Setter opp menyvalgene
+    // Setter opp radiostasjoner som vises i menyen
     std::vector<radioStation> stations = {
-        {"NRK P1", "http://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h"},
+        {"NRK P1", std::vector<radioRegion>{
+            {"Buskerud", "http://lyd.nrk.no/nrk_radio_p1_buskerud_mp3_h"},
+            {"Finnmark", "http://lyd.nrk.no/nrk_radio_p1_finnmark_mp3_h"},
+            {"Hordaland", "http://lyd.nrk.no/nrk_radio_p1_hordaland_mp3_h"},
+            {"Innlandet", "http://lyd.nrk.no/nrk_radio_p1_innlandet_mp3_h"},
+            {"Møre og Romsdal", "http://lyd.nrk.no/nrk_radio_p1_more_og_romsdal_mp3_h"},
+            {"Nordland", "http://lyd.nrk.no/nrk_radio_p1_nordland_mp3_h"},
+            {"Oslo", "http://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h"},
+            {"Rogaland", "http://lyd.nrk.no/nrk_radio_p1_rogaland_h"},
+            {"Sogn og Fjordane", "http://lyd.nrk.no/nrk_radio_p1_sogn_og_fjordane_mp3_h"},
+            {"Sørlandet", "http://lyd.nrk.no/nrk_radio_p1_sorlandet_mp3_h"},
+            {"Telemark", "http://lyd.nrk.no/nrk_radio_p1_telemark_mp3_h"},
+            {"Troms", "http://lyd.nrk.no/nrk_radio_p1_troms_mp3_h"},
+            {"Trøndelag", "http://lyd.nrk.no/nrk_radio_p1_trondelag_mp3_h"},
+            {"Vestfold", "http://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"},
+            {"Østfold", "http://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"}
+        }},
+
         {"NRK P2", "http://lyd.nrk.no/nrk_radio_p2_mp3_h"},
         {"NRK P3", "http://lyd.nrk.no/nrk_radio_p3_mp3_h"},
         {"NRK Super", "http://lyd.nrk.no/nrk_radio_super_mp3_h"},
@@ -44,7 +72,7 @@ int main() {
         {"Quit", ""}
     };
 
-    setlocale(LC_ALL, "C.UTF-8"); // Fikser tekstformateringen
+    setlocale(LC_ALL, "C.UTF-8"); // Fikser tekstformateringen på tittelen
     
     initscr(); // Tar kontroll over terminalen
     keypad(stdscr, TRUE); // Aktiverer tastaturet
@@ -52,6 +80,7 @@ int main() {
     while (true) {
         clear();
         
+        // Legger til tittelrammen
         printw("╔════════════════════════════╗\n");
         printw("║    Velg en radiostasjon    ║\n");
         printw("╚════════════════════════════╝\n");
@@ -63,6 +92,7 @@ int main() {
                 cursor.replace(0, 1, ">");
             }
             
+            // Legger til mellomrom
             if (station == 8 || station == 17 || station == 20) {
                 printw("\n");
             }
