@@ -26,7 +26,7 @@ void playRadio(std::string url) {
 void drawTitle(std::string title, int padding = 3) {
     std::string line;
     
-    for (int i = 0; i < title.length() + padding * 2; i++)
+    for (int symbol = 0; symbol < title.length() + padding * 2; symbol++)
         line += "═";
 
     std::string top = "╔" + line + "╗";
@@ -41,33 +41,36 @@ void drawTitle(std::string title, int padding = 3) {
 
 // Setter opp menyen
 std::vector<radioStation> radioStations = {
-    {"NRK P1", std::vector<radioRegion>{
-        {"Buskerud", "http://lyd.nrk.no/nrk_radio_p1_buskerud_mp3_h"},
-        {"Finnmark", "http://lyd.nrk.no/nrk_radio_p1_finnmark_mp3_h"},
-        {"Hordaland", "http://lyd.nrk.no/nrk_radio_p1_hordaland_mp3_h"},
-        {"Innlandet", "http://lyd.nrk.no/nrk_radio_p1_innlandet_mp3_h"},
-        {"Møre og Romsdal", "http://lyd.nrk.no/nrk_radio_p1_more_og_romsdal_mp3_h"},
-        {"Nordland", "http://lyd.nrk.no/nrk_radio_p1_nordland_mp3_h"},
-        {"Oslo", "http://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h"},
-        {"Rogaland", "http://lyd.nrk.no/nrk_radio_p1_rogaland_h"},
-        {"Sogn og Fjordane", "http://lyd.nrk.no/nrk_radio_p1_sogn_og_fjordane_mp3_h"},
-        {"Sørlandet", "http://lyd.nrk.no/nrk_radio_p1_sorlandet_mp3_h"},
-        {"Telemark", "http://lyd.nrk.no/nrk_radio_p1_telemark_mp3_h"},
-        {"Troms", "http://lyd.nrk.no/nrk_radio_p1_troms_mp3_h"},
-        {"Trøndelag", "http://lyd.nrk.no/nrk_radio_p1_trondelag_mp3_h"},
-        {"Vestfold", "http://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"},
-        {"Østfold", "http://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"},
+    {"NRK P1", std::vector<radioRegion> {
+        {"Buskerud", "https://lyd.nrk.no/nrk_radio_p1_buskerud_mp3_h"},
+        {"Innlandet", "https://lyd.nrk.no/nrk_radio_p1_innlandet_mp3_h"},
+        {"Oslo", "https://lyd.nrk.no/nrk_radio_p1_stor-oslo_mp3_h"},
+        {"Telemark", "https://lyd.nrk.no/nrk_radio_p1_telemark_mp3_h"},
+        {"Vestfold", "https://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"},
+        {"Østfold", "https://lyd.nrk.no/nrk_radio_p1_vestfold_mp3_h"},
 
-        {"Back", ""}
+        {"Sørlandet", "https://lyd.nrk.no/nrk_radio_p1_sorlandet_mp3_h"},
+
+        {"Hordaland", "https://lyd.nrk.no/nrk_radio_p1_hordaland_mp3_h"},
+        {"Møre og Romsdal", "https://lyd.nrk.no/nrk_radio_p1_more_og_romsdal_mp3_h"},
+        {"Rogaland", "https://lyd.nrk.no/nrk_radio_p1_rogaland_mp3_h"},
+        {"Sogn og Fjordane", "https://lyd.nrk.no/nrk_radio_p1_sogn_og_fjordane_mp3_h"},
+
+        {"Finnmark", "https://lyd.nrk.no/nrk_radio_p1_finnmark_mp3_h"},
+        {"Nordland", "https://lyd.nrk.no/nrk_radio_p1_nordland_mp3_h"},
+        {"Troms", "https://lyd.nrk.no/nrk_radio_p1_troms_mp3_h"},
+        {"Trøndelag", "https://lyd.nrk.no/nrk_radio_p1_trondelag_mp3_h"},
+
+        {"Tilbake", ""}
     }},
 
-    {"NRK P2", "http://lyd.nrk.no/nrk_radio_p2_mp3_h"},
-    {"NRK P3", "http://lyd.nrk.no/nrk_radio_p3_mp3_h"},
-    {"NRK Super", "http://lyd.nrk.no/nrk_radio_super_mp3_h"},
-    {"NRK Klassisk", "http://lyd.nrk.no/nrk_radio_klassisk_mp3_h"},
-    {"NRK Jazz", "http://lyd.nrk.no/nrk_radio_jazz_mp3_h"},
-    {"NRK Folkemusikk", "http://lyd.nrk.no/nrk_radio_folkemusikk_mp3_h"},
-    {"NRK Sport", "http://lyd.nrk.no/nrk_radio_sport_mp3_h"},
+    {"NRK P2", "https://lyd.nrk.no/nrk_radio_p2_mp3_h"},
+    {"NRK P3", "https://lyd.nrk.no/nrk_radio_p3_mp3_h"},
+    {"NRK Super", "https://lyd.nrk.no/nrk_radio_super_mp3_h"},
+    {"NRK Klassisk", "https://lyd.nrk.no/nrk_radio_klassisk_mp3_h"},
+    {"NRK Jazz", "https://lyd.nrk.no/nrk_radio_jazz_mp3_h"},
+    {"NRK Folkemusikk", "https://lyd.nrk.no/nrk_radio_folkemusikk_mp3_h"},
+    {"NRK Sport", "https://lyd.nrk.no/nrk_radio_sport_mp3_h"},
 
     {"P4 Norge", "https://p4.p4groupaudio.com/P04_MH"},
     {"P5 Hits", "https://p4.p4groupaudio.com/P05_MH"},
@@ -83,7 +86,7 @@ std::vector<radioStation> radioStations = {
     {"Radio Rock", "https://live-bauerno.sharp-stream.com/radiorock_no_mp3"},
     {"Radio Kiss", "https://live-bauerno.sharp-stream.com/kiss_no_mp3"},
 
-    {"Quit", ""}
+    {"Forlat", ""}
 };
 
 int main() {
@@ -93,7 +96,7 @@ int main() {
     keypad(stdscr, TRUE); // Aktiverer tastaturet
 
     // Definerer hvor mellomrommene skal plasseres
-    std::vector<std::vector<int>> sections = {{8, 17, 20}, {15}};
+    std::vector<std::vector<int>> sections = {{8, 17, 20}, {6, 7, 10, 15}};
 
     // Lager en vektor med tittlene
     std::vector<std::string> title = {"Velg en radiostasjon", "Velg en region"};
@@ -142,22 +145,18 @@ int main() {
         if (key == KEY_UP) choice--;
         if (key == KEY_DOWN) choice++;
 
-        if (choice < 0)
-            choice = stations.size() - 1;
-
-        if (choice >= stations.size())
-            choice = 0;
+        choice = (choice + stations.size()) % stations.size();
 
         // Avslutter menyen når enter trykkes
         if (key == 10) {
             if (menu == -1) 
-                if (radioStations[choice].name != "Quit" && !radioStations[choice].regions.empty())
+                if (radioStations[choice].name != "Forlat" && !radioStations[choice].regions.empty())
                     menu = choice, choice = 0;
                 
                 else break;
 
             else
-                if (radioStations[menu].regions[choice].name == "Back")
+                if (radioStations[menu].regions[choice].name == "Tilbake")
                     menu = -1, choice = 0;
                 
                 else break;
