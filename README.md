@@ -8,13 +8,15 @@ g++ main.cpp -lncurses -o radio && ./radio
 
 ## Funksjoner
 - Spiller norske radiostasjoner
+- Støtter forskjellige regioner
 - Enkel terminalbasert brukeropplevelse
-- Bruker C++ og systemkommandoer for avspilling
+- Navigasjon med piltaster
+- Avspilling via ffplay
 
 ## Teknologi
 - C++
-- ffmpeg
-- MP3 audio streaming
+- ffmpeg / ffplay
+- HTTPS audio streaming
 
 ## Requirements
 ```bash

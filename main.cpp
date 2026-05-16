@@ -23,7 +23,7 @@ void playRadio(std::string url) {
         system(("ffplay -nodisp -hide_banner " + url).c_str());
 }
 
-void drawTitle(std::string title, int padding = 3) {
+void displayTitle(std::string title, int padding = 3) {
     std::string line;
     
     for (int symbol = 0; symbol < title.length() + padding * 2; symbol++)
@@ -106,10 +106,9 @@ int main() {
 
     while (true) {
         // Legger til tittelen
-        drawTitle(title[menu > -1]);
+        displayTitle(title[menu > -1]);
         
         std::vector<std::string> stations;
-        std::vector<radioRegion> regions;
 
         if (menu == -1)
             for (auto station : radioStations)
@@ -149,17 +148,21 @@ int main() {
 
         // Avslutter menyen når enter trykkes
         if (key == 10) {
-            if (menu == -1) 
-                if (radioStations[choice].name != "Forlat" && !radioStations[choice].regions.empty())
-                    menu = choice, choice = 0;
+            if (menu == -1) {
+                if (radioStations[choice].url.empty() && !radioStations[choice].regions.empty())
+                    menu = choice;
                 
                 else break;
+            }
 
-            else
-                if (radioStations[menu].regions[choice].name == "Tilbake")
-                    menu = -1, choice = 0;
+            else {
+                if (radioStations[menu].regions[choice].url.empty())
+                    menu = -1;
                 
                 else break;
+            }
+
+            choice = 0;
         }
 
         clear();
