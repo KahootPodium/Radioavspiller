@@ -10,7 +10,6 @@ g++ main.cpp -lncurses -o radio && ./radio
 - Spiller norske radiostasjoner
 - Støtter forskjellige regioner
 - Enkel terminalbasert brukeropplevelse
-- Navigasjon med piltaster
 - Avspilling via ffplay
 
 ## Teknologi
