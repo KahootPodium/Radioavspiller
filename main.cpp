@@ -19,8 +19,7 @@ struct radioStation {
 };
 
 void playRadio(std::string url) {
-    if (!url.empty())
-        system(("ffplay -nodisp -hide_banner " + url).c_str());
+    if (!url.empty()) system(("ffplay -nodisp -hide_banner " + url).c_str());
 }
 
 void displayTitle(std::string title, int padding = 3) {
@@ -126,7 +125,7 @@ int main() {
 
             // Legger til mellomrom
             if (std::find(sections[menu + 1].begin(), sections[menu + 1].end(), station) != sections[menu + 1].end())
-                cursor.insert(0, "\n");
+                cursor = "\n" + cursor;
 
             printw("\n%s ", cursor.c_str());
 
