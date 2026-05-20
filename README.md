@@ -1,5 +1,5 @@
 # Radioavspiller
-Minimalistisk radioavspiller som lar deg lytte til en rekke ulike norske radiostasjoner direkte fra terminalen.
+Radioavspiller er et minimalistisk program som lar deg lytte til en rekke ulike norske radiostasjoner direkte fra terminalen.
 Programmet er skrevet i C++ og bruker `ffplay` til å spille av radiostasjoner via internett.
 
 ## Hvordan kjøre
