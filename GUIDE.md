@@ -42,7 +42,7 @@ Du kan avslutte programmet på følgende måter:
 ## Vanlige problemer
 ### Ingen lyd?
 - Sjekk at `ffplay` er installert
-- Sjekk volumet på maskinen
+- Sjekk volum på maskinen
 - Sjekk at riktig lydutgang er valgt
 
 ### Programmet starter ikke?
